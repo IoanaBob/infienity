@@ -29,10 +29,11 @@ module Infienity
           unless state.sorting_dropdown_options.key?(state.selected_dropdown_option)
             raise StandardError("dropdown option not provided in the correct format")
           end
-          state.selected_dropdown_option = sort[:sort].keys[0]
+
+          state.selected_dropdown_option = sort.keys.first
 
           search_opts = { attribute: state.search_attribute, search_string: state.search_string }
-          sort_opts = sort[:sort].values[0]
+          sort_opts = sort.values.first
           state.index = 0
 
           state.users = current_class.paginate(per_page: state.per_page, start: 0, search: search_opts, sort: sort_opts)
