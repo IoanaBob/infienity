@@ -1,0 +1,10 @@
+<div class="dropdown">
+    <button class="<%= options[:class] %>" id="<%= options[:id] %>" name="<%= options[:name] %>" type="button" data-toggle="dropdown"> <%= current_option %>
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+        <% dropdown_options.each do |key,val| %>
+            <li fie-click="sort_<%= assign %>" fie-parameters= "<%= { sort: {key => val} }.to_json %>"> <%= key %> </li>
+        <% end %>
+    </ul>
+</div>
