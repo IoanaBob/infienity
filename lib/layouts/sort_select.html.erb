@@ -1,10 +1,5 @@
-<select id="infienity_select" fie-change="sort_<%= assign %>">
+<select fie-change="sort_select_<%= assign %>">
   <% dropdown_options.each do |key,val| %>
-    <option value="<%= { sort: {key => val} }.to_json %>"> <%= key %> </option>
+    <option value="<%= {key => val}.to_json %>"> <%= key %> </option>
   <% end %>
 </select>
-
-<script>
-select = document.getElementById("infienity_select");
-select.fie-parameters = select.options[select.selectedIndex];
-</script>
