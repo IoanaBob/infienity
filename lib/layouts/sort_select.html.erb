@@ -1,4 +1,10 @@
-<select fie-change="sort_select_<%= assign %>">
+<select
+  class="<%= options[:class] %>"
+  id="<%= options[:id] %>"
+  name="<%= options[:name] %>"
+  value="<%= search_string %>"
+  fie-keyup="filter_<%= assign %>" >
+  fie-change="sort_select_<%= assign %>">
   <% dropdown_options.each do |key,val| %>
     <option value="<%= {key => val}.to_json %>"> <%= key %> </option>
   <% end %>
