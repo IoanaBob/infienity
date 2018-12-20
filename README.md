@@ -108,11 +108,27 @@ In your controller method, add the following variables, in order to hold the sta
 
 If you use a custom dropdown using `<li>` elements, you can use this template:
 ```ruby
-<%= render template: 'layouts/sort', locals: { dropdown_options: @sorting_dropdown_options, current_option: @selected_dropdown_option, assign: "users" } %>
+<%= render
+  template: 'layouts/sort',
+  locals:
+    {
+      dropdown_options: @sorting_dropdown_options,
+      current_option: @selected_dropdown_option,
+      assign: "users"
+    }
+%>
 ```
+
 Or for a basic `<select>` dropdown:
 ```ruby
-<%= render template: 'layouts/sort_select', locals: { dropdown_options: @sorting_dropdown_options, current_option: @selected_dropdown_option, assign: "users" } %>
+<%= render
+  template: 'layouts/sort_select',
+  locals: {
+    dropdown_options: @sorting_dropdown_options,
+    current_option: @selected_dropdown_option,
+    assign: "users"
+  }
+%>
 ```
 
 Or use html in this manner:
@@ -134,7 +150,16 @@ Note: be careful to put the correct assign for `fie-click` attribute
 
 To style the html in the templates, add the `options` hash inside the locals hash, in this manner:
 ```ruby
-<%= render template: 'layouts/sort', locals: { dropdown_options: @sorting_dropdown_options, current_option: @selected_dropdown_option, assign: "users", options: { class: "btn btn-primary dropdown-toggle" } } %>
+<%= render
+  template: 'layouts/sort',
+  locals:
+    {
+      dropdown_options: @sorting_dropdown_options,
+      current_option: @selected_dropdown_option,
+      assign: "users",
+      options: { class: "btn btn-primary dropdown-toggle" }
+    }
+%>
 ```
 
 Supported options:
