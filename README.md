@@ -2,7 +2,7 @@
 
 Infienity provides infinity scroll, combined with sort and search via web-socket connection. Since infinity scroll requires continuous calls to request new parts of the data, requesting new data via a permanent web-socket connection should be a cleaner approach than using traditional AJAX calls.
 
-This gem is dependent on [Fie]("https://github.com/raen79/fie"), a gem that makes DOM manipulations through web sockets possible. It works by... (TODO).
+This gem is dependent on [Fie]("https://github.com/raen79/fie"), a gem that makes DOM manipulations through web sockets possible.
 
 ## Installation
 
@@ -28,7 +28,7 @@ Add Infienity's javascript in your project, by adding the following lines into `
 //= require infienity
 ```
 
-As Infienity is dependent on Fie, you will have to follow the regular [Fie setup]("https://github.com/raen79/fie"), which also includes setting up Redis.
+As Infienity is dependent on Fie, you will have to follow the regular [Fie setup]("https://github.com/raen79/fie"), which also includes setting up Redis and replacing `yield` in your main layout.
 
 ## Usage
 For both infinity scroll, searching and sorting you will need to perform the following steps:
@@ -38,9 +38,9 @@ Add the following line in the model you want to perform the actions on:
 extend Infienity::Model
 ```
 
-Create a commander for your model (for front-end manipulation). The commander should be correspondant to the controller of your model (path: `app/commanders/[name]_commander).
+Create a commander for your model (for front-end manipulation). The commander should be correspondent to the controller of your model (path: `app/commanders/[name]_commander) `.
 ```ruby
-class HomeCommander < Fie::Commander
+class UserCommander < Fie::Commander
   extend Infienity::Commander
   commander_assigns :users # model name in this format
 end
@@ -49,7 +49,7 @@ end
 In your controller method, you will need to assign some variables, which will hold the state. you must declare all of them in order for the infinity scroll to work:
 ```ruby
 @index = 0
-@per_page = 10 # choose your preferred amount
+@per_page = 5 # or omit if you want the default: 10
 ```
 
 ### Pagination
@@ -59,15 +59,15 @@ In your controller method, perform the pagination of the infinity scroll like so
 @users = User.paginate
 ```
 
-In your view, for each data entry, wrap it up in a span, with the following class and custom attribute. `infienity-model` should include your model name, in plural.
+In your view, wrap the dataset in a `div` or `span`, with the following class and custom attribute. `infienity-model` should include your model name, in plural.
 Example:
 ```ruby
-<% @users.each do |u| %>
-    <span class="paginate" infienity-model="users">
+<div class="paginate" infienity-model="users">
+    <% @users.each do |u| %>
         Name: <%= u.full_name %> <br/>
         Username: <%= u.username %>
-    </span>
-<% end %>
+    <% end %>
+</span>
 ```
 
 ### Search
@@ -165,7 +165,7 @@ To style the html in the templates, add the `options` hash inside the locals has
 Supported options:
 - `:id`
 - `:class`
-- `:name`
+- `:name` (except for search)
 
 ## Development
 
