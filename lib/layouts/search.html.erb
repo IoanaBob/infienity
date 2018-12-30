@@ -1,8 +1,8 @@
-<input
-  type="text"
+<% options = {} unless local_assigns[:options] %>
+
+<input type="text"
   class="<%= options[:class] %>"
   id="<%= options[:id] %>"
-  name="search_string <%= options[:name] %>"
-  value="<%= search_string %>"
-  fie-keyup="filter_<%= assign %>" >
-</input>
+  name="search_string"
+  value= "<%= search_string %>"
+  fie-keyup="filter_<%= assign %>" />
